@@ -87,7 +87,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
         }
         SnapshotExiles();
         DrawStatusAndSnapshots();
-        DrawClearSnapshotsButton();
+        //DrawClearSnapshotsButton();
         DrawGiantCounters();
         DrawRitualRuneCircles();
     }
