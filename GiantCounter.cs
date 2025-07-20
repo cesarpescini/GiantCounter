@@ -43,7 +43,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
 {
     private List<Entity> _exiles = new();
     private List<string> giantNames = new();
-    private List<int> _snapshots = new();
+    private List<(int, string)> _snapshots = new();
     private int _lastAreaHash;
     private int _snapshotCount = 0;
     private string _statusText = "";
@@ -95,7 +95,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
     private void TakeSnapshot()
     {
         _snapshotCount++;
-        _snapshots.Add(_exiles.Count);
+        _snapshots.Add(new (int, string)(_exiles.Count, string.Join(", ", giantNames.ToArray()));
     }
 
     private void SnapshotExiles()
@@ -131,7 +131,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
             _exiles = allExiles;
         }
         _statusText = Settings.CountExilesNearRitual.Value
-            ? $"Giants In Range: {_exiles.Count}" + string.Join(", ", giantNames.ToArray())
+            ? $"Giants In Range: {_exiles.Count}")
             : $"Giants Visible: {_exiles.Count}";
     }
 
@@ -145,7 +145,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
         int i = 1;
         foreach (var count in _snapshots)
         {
-            lines.Add($"Snapshot {i}: {count} Giants");
+            lines.Add($"Snapshot {i}: {count.Item1} Giants" + count.Item2);
             i++;
         }
         int fontSize = 24;
