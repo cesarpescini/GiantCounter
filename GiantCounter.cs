@@ -43,7 +43,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
 {
     private List<Entity> _exiles = new();
     private List<string> giantNames = new();
-    private List<(int, string)> _snapshots = new();
+    private List<Tuple<int, string>> _snapshots = new();
     private int _lastAreaHash;
     private int _snapshotCount = 0;
     private string _statusText = "";
@@ -95,7 +95,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
     private void TakeSnapshot()
     {
         _snapshotCount++;
-        _snapshots.Add(new (int, string)(_exiles.Count, string.Join(", ", giantNames.ToArray()));
+        _snapshots.Add(Tuple.Create(_exiles.Count, string.Join(", ", giantNames.ToArray())));
     }
 
     private void SnapshotExiles()
