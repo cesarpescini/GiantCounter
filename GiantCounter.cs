@@ -148,7 +148,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
         int i = 1;
         foreach (var count in _snapshots)
         {
-            lines.Add($"Snapshot {i}: {count.Item1} Giants" + count.Item2);
+            lines.Add($"Snapshot {i}: {count.Item1}. \n Giants" + count.Item2);
             i++;
         }
         int fontSize = 24;
