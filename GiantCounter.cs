@@ -95,7 +95,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
     private void TakeSnapshot()
     {
         _snapshotCount++;
-        _snapshots.Add(Tuple.Create(_exiles.Count, string.Join(", ", giantNames.ToArray())));
+        _snapshots.Add(Tuple.Create(_exiles.Count, " "+string.Join(", ", giantNames.ToArray())));
     }
 
     private void SnapshotExiles()
