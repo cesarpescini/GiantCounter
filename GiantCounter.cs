@@ -105,7 +105,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
                         e.TryGetComponent<Positioned>(out var pos) &&
                         pos.Scale == 1.8f)
             .ToList();
-        giantNames = allExiles.Select(e => e.RenderName);
+        giantNames = allExiles.Select(e => e.RenderName).ToList();
         
         if (Settings.CountExilesNearRitual.Value)
         {
