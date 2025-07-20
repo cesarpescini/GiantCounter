@@ -131,7 +131,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
             _exiles = allExiles;
         }
         _statusText = Settings.CountExilesNearRitual.Value
-            ? $"Giants In Range: {_exiles.Count}")
+            ? $"Giants In Range: {_exiles.Count}"
             : $"Giants Visible: {_exiles.Count}";
     }
 
