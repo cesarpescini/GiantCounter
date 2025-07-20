@@ -42,6 +42,7 @@ public class GiantCounterSettings : ISettings
 public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
 {
     private List<Entity> _exiles = new();
+    private List<string> giantNames = new();
     private List<int> _snapshots = new();
     private int _lastAreaHash;
     private int _snapshotCount = 0;
@@ -104,6 +105,8 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
                         e.TryGetComponent<Positioned>(out var pos) &&
                         pos.Scale == 1.8f)
             .ToList();
+        giantNames = allExiles.Select(e => e.RenderName);
+        
         if (Settings.CountExilesNearRitual.Value)
         {
             // Find all ritual altars
@@ -128,7 +131,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
             _exiles = allExiles;
         }
         _statusText = Settings.CountExilesNearRitual.Value
-            ? $"Giants In Range: {_exiles.Count}"
+            ? $"Giants In Range: {_exiles.Count}" + string.Join(", ", giantNames.ToArray())
             : $"Giants Visible: {_exiles.Count}";
     }
 
