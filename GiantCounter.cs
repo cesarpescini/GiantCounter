@@ -105,7 +105,7 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
                         e.TryGetComponent<Positioned>(out var pos) &&
                         pos.Scale == 1.8f)
             .ToList();
-        giantNames = allExiles.Select(e => e.RenderName).ToList();
+        
         
         if (Settings.CountExilesNearRitual.Value)
         {
@@ -125,10 +125,13 @@ public class GiantCounter : BaseSettingsPlugin<GiantCounterSettings>
                     runePositions.Any(runePos => Vector3.Distance(GameController.IngameState.Data.ToWorldWithTerrainHeight(pos.GridPosition), runePos) <= ritualRange)
                 )
                 .ToList();
+
+            giantNames = _exiles.Select(e => e.RenderName).ToList();
         }
         else
         {
             _exiles = allExiles;
+            giantNames = allExiles.Select(e => e.RenderName).ToList();
         }
         _statusText = Settings.CountExilesNearRitual.Value
             ? $"Giants In Range: {_exiles.Count}"
